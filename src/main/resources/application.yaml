@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: produto-service
+  h2:
+    console:
+      settings:
+        trace: true
+server:
+  port: 6161
+  error:
+    whitelabel:
+      enabled: false
+  
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+      
