@@ -5,6 +5,7 @@ spring:
     console:
       settings:
         trace: true
+   
 server:
   port: 6161
   error:

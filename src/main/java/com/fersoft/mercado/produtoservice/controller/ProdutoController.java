@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fersoft.mercado.produtoservice.domain.Produto;
 import com.fersoft.mercado.produtoservice.repository.ProdutoRepository;
+import com.fersoft.mercado.produtoservice.service.ProdutoService;
 import com.fersoft.mercado.produtoservice.service.TicketService;
 
 @RestController
@@ -14,6 +15,8 @@ public class ProdutoController {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
+	@Autowired
+	ProdutoService produtoService;
 	@Autowired
 	TicketService ticketService;
 	
@@ -24,6 +27,7 @@ public class ProdutoController {
 	
 	@GetMapping(value = "/produto/{produtoId}")
 	public Produto findByProdutoId(@PathVariable Integer produtoId) {
+		Object p1 = produtoService.getProduct(produtoId);
 		Produto produto = produtoRepository.findById(produtoId).get();
 		produto.setTicket(ticketService.findByProdutoId(produtoId));
 		return produto;
