@@ -1,8 +1,10 @@
 package com.fersoft.mercado.produtoservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fersoft.mercado.produtoservice.domain.Produto;
@@ -19,6 +21,15 @@ public class ProdutoController {
 	ProdutoService produtoService;
 	@Autowired
 	TicketService ticketService;
+	
+	@Value("${eureka.instance.instance-id}")
+	public String instanceId;
+	
+	@GetMapping(value="/test")
+	@ResponseBody
+	public String hi() {
+		return String.format("Hi from %s", instanceId);
+	}
 	
 	@GetMapping(value="/produto")
 	public Iterable<Produto> all() {
